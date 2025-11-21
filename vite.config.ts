@@ -1,6 +1,18 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+// 🛑 AÑADE LA PROPIEDAD 'base' 🛑
+export default defineConfig({
+  base: '/MichiTarotappdesign/', // ¡El nombre de tu repositorio!
+  plugins: [react()],
+  // ... el resto de tu configuración (resolve, alias, build)
+  
+  build: {
+    target: 'esnext',
+    outDir: 'dist', // Asegúrate de que tu carpeta de salida sea 'dist'
+  },
+  // ...
+});
 
 // NOTA: Usamos './src' porque es el nombre de la carpeta en tu disco.
 const srcDir = './src'; 
