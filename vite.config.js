@@ -1,6 +1,15 @@
+export default defineConfig({
+  // Asegúrate de que coincida con el nombre del repo en GitHub
+  base: '/Michitarotappdesign/', 
+  
+  plugins: [react()],
+  // ... resto de tu configuración
+  
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+
+
 
 // Define la carpeta fuente. Usamos './src' por defecto.
 const srcDir = './src'; 

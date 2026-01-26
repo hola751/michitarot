@@ -1,8 +1,9 @@
 {
-    "name": "MichiTarot App Design",
+    "name": "michitarot-app-design",
     "version": "0.1.0",
     "private": true,
     "type": "module",
+    "homepage": "https://hola751.github.io/Michitarotappdesign",
     "dependencies": {
         "@google/genai": "^1.30.0",
         "@radix-ui/react-accordion": "^1.2.3",
@@ -54,12 +55,14 @@
         "@types/node": "^20.10.0",
         "@types/react": "^19.2.6",
         "@vitejs/plugin-react-swc": "^3.10.2",
+        "gh-pages": "^6.3.0",
         "vite": "6.3.5"
     },
     "scripts": {
         "dev": "vite",
-        "build": "tsc && vite build",
+        "build": "vite build",
         "preview": "vite preview",
-        "deploy": "npm run build && git add dist -f && git commit -m 'Deploy MichiTarot' && git subtree push --prefix dist origin gh-pages"
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
     }
 }
