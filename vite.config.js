@@ -17,7 +17,7 @@ const srcDir = './src';
 // Esta es la ÚNICA exportación por defecto (export default)
 export default defineConfig({
   // CONFIGURACIÓN PARA DESPLIEGUE EN GITHUB PAGES
-  base: '/MichiTarotappdesign/', // El nombre de tu repositorio
+  base: '/Michitarotappdesign/', // El nombre de tu repositorio
   
   plugins: [react()],
   resolve: {
