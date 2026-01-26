@@ -1,37 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
-// 🛑 AÑADE LA PROPIEDAD 'base' 🛑
-export default defineConfig({
-  base: '/MichiTarotappdesign/', // ¡El nombre de tu repositorio!
-  plugins: [react()],
-  // ... el resto de tu configuración (resolve, alias, build)
-  
-  build: {
-    target: 'esnext',
-    outDir: 'dist', // Asegúrate de que tu carpeta de salida sea 'dist'
-  },
-  // ...
-});
 
-// NOTA: Usamos './src' porque es el nombre de la carpeta en tu disco.
+// Define la carpeta fuente. Usamos './src' por defecto.
 const srcDir = './src'; 
 
+// Esta es la ÚNICA exportación por defecto (export default)
 export default defineConfig({
+  // CONFIGURACIÓN PARA DESPLIEGUE EN GITHUB PAGES
+  base: '/MichiTarotappdesign/', // El nombre de tu repositorio
+  
   plugins: [react()],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      // 🛑 CORRECCIONES PARA TU CÓDIGO 🛑
-      
-      // 1. Alias universal para la carpeta de código fuente
+      // 🛑 CORRECCIONES PARA TU CÓDIGO (IA y Rutas) 🛑
       '@': path.resolve(__dirname, srcDir), 
-      
-      // 2. Alias para la carpeta de assets (imágenes)
       '@assets': path.resolve(__dirname, `${srcDir}/assets`),
-      
-      // 3. Alias para forzar la búsqueda de módulos (soluciona el error de Gemini)
-      '~': path.resolve(__dirname, './node_modules'), 
+      '~': path.resolve(__dirname, './node_modules'), // Alias para módulos NPM (Gemini)
       
       // ------------------------------------
       // RESTO DE ALIAS GENERADOS POR FIGMA MAKE
@@ -79,7 +65,7 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    outDir: 'build',
+    outDir: 'dist', // La carpeta de salida para el despliegue
   },
   server: {
     port: 3000,
