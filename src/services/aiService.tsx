@@ -1,14 +1,19 @@
-// Fuente/services/aiService.tsx
+const API_URL = "https://michitarotux.vercel.app//api/gemini";  // cambia la URL por la tuya real
 
-// 🛑 USAMOS LA IMPORTACIÓN ESTÁNDAR 🛑
-import { GoogleGenAI } from '@google/genai'; 
+export async function getTarotReading({ question, spread }) {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question, spread })
+  });
 
-// Obtener la clave API desde el archivo .env.local 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY; 
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error || `Error ${res.status}`);
+  }
 
-// Inicializar la IA con tu clave
-const ai = new GoogleGenAI({ apiKey: API_KEY });
-const model = "gemini-2.5-flash"; // Modelo rápido y económico
+  return res.json();  // { ok: true, reading: "..." }
+}
 
 export type CartaMichi = {
     id: number;
