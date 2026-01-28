@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './assets/images/michi-tarot-logo.png';
 import { michiArcanos, CartaMichi } from './data/TarotData.jsx';
-import { generarLecturaIA } from "./service/aiService/gemini.js";
+import { getTarotReading } from "./service/aiService";
 
 async function handleAsk() {
   setLoading(true);
@@ -10,8 +10,9 @@ async function handleAsk() {
   try {
     const { reading } = await getTarotReading({
       question: userQuestion,
-      spread: selectedSpread
+      spread: selectedSpread,
     });
+
     setReading(reading);
   } catch (e) {
     console.error(e);
@@ -20,6 +21,7 @@ async function handleAsk() {
     setLoading(false);
   }
 }
+
 
 // Función auxiliar para obtener 3 cartas al azar
 const obtenerTresCartas = (baraja: CartaMichi[]): CartaMichi[] => {
