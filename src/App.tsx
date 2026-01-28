@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './assets/images/michi-tarot-logo.png';
 import { michiArcanos, CartaMichi } from './data/TarotData.jsx';
-import { getTarotReading } from "./service/aiService";
+import { getTarotReading } from "@/service/aiService";
 
 async function handleAsk() {
   setLoading(true);
