@@ -1,7 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import logo from './assets/images/michi-tarot-logo.png';
 import { michiArcanos, CartaMichi } from './data/TarotData.jsx';
-import { generarLecturaIA } from './services/aiService';
+import { generarLecturaIA } from "./service/aiService/gemini.js";
+
+async function handleAsk() {
+  setLoading(true);
+  setReading("");
+
+  try {
+    const { reading } = await getTarotReading({
+      question: userQuestion,
+      spread: selectedSpread
+    });
+    setReading(reading);
+  } catch (e) {
+    console.error(e);
+    alert("Hubo un problema con la lectura de tarot.");
+  } finally {
+    setLoading(false);
+  }
+}
 
 // Función auxiliar para obtener 3 cartas al azar
 const obtenerTresCartas = (baraja: CartaMichi[]): CartaMichi[] => {
